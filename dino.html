@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dino’s 18th Birthday 💖</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd1dc, #ffe4f3, #fff0f5);
+    background-size: 300% 300%;
+    animation: gradientShift 10s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .floating-heart {
+    position: absolute;
+    color: #ff5b84;
+    font-size: 70px;
+    animation: floatHearts 20s linear infinite;
+    opacity: 1.8;
+  }
+
+  @keyframes floatHearts {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(2); opacity: 1; }
+}
+
+  .heart {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: #ff4b6e;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: beat 1s infinite;
+    box-shadow:
+      0 0 80px #ff4b6e,
+      0 0 120px #ff80aa,
+      0 0 180px #ffcce0,
+      0 0 250px rgba(255, 182, 193, 0.9);
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: #ff4b6e;
+    border-radius: 50%;
+  }
+
+  .heart::before { top: -70px; left: 0; }
+  .heart::after { left: 70px; top: 0; }
+
+  @keyframes beat {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.25); }
+  }
+
+  .heart:hover {
+    box-shadow:
+      0 0 100px #ff4b6e,
+      0 0 160px #ff80aa,
+      0 0 240px #ffcce0;
+  }
+
+  .letter-page {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, #fff0f6, #ffeaf4, #ffddee);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    overflow: hidden;
+  }
+
+  .letter-page.show {
+    opacity: 1;
+    pointer-events: auto;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .petal {
+    position: absolute;
+    background: radial-gradient(circle at center, #ffc0cb 0%, #ffb6c1 60%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatPetals 20s linear infinite;
+  }
+
+  @keyframes floatPetals {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+  }
+
+  .flower {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, #ffbfd2 20%, #ff80aa 80%);
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(0.5px);
+    animation: floatFlower 15s linear infinite;
+    z-index: 0;
+  }
+
+  .flower::before, .flower::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, #ffbfd2 20%, #ff80aa 80%);
+    border-radius: 50%;
+  }
+
+  .flower::before { transform: rotate(45deg); }
+  .flower::after { transform: rotate(-45deg); }
+
+  @keyframes floatFlower {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+  }
+
+  .letter {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
+    max-width: 700px;
+    border-radius: 30px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    border: 2px solid #ffd6e0;
+    box-shadow: 0 0 25px #ffb6c1, 0 0 80px #ffd1dc inset;
+    z-index: 1;
+    animation: fadeInUp 1.5s ease;
+  }
+
+  .letter.glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 25px #ffb6c1, 0 0 80px #ffd1dc inset; }
+    50% { box-shadow: 0 0 40px #ff80aa, 0 0 120px #ffcce0 inset; }
+  }
+
+  .letter h1 {
+    color: #ff4b6e;
+    font-size: 3rem;
+    font-family: 'Great Vibes', cursive;
+    margin-bottom: 20px;
+    animation: glowText 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowText {
+    from { text-shadow: 0 0 10px #ff6fa1; }
+    to { text-shadow: 0 0 30px #ff9ecb; }
+  }
+
+  .letter p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  .back-btn {
+    margin-top: 30px;
+    background: linear-gradient(90deg, #ff4b6e, #ff7aa8);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .back-btn:hover { transform: scale(1.1); }
+
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    animation: sparkleAnim 2s linear infinite;
+  }
+
+  @keyframes sparkleAnim {
+    0% { transform: scale(0) translateY(0); opacity: 1; }
+    100% { transform: scale(1.5) translateY(-50px); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<script>
+  for (let i = 0; i < 15; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('floating-heart');
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    document.body.appendChild(heart);
+  }
+</script>
+
+<audio id="bgMusic" src="file:///C:/Users/Orbiana%20Floreza/Downloads/Bertha%20Tillman%20-%20Oh%20My%20Angel%20(Lyrics).mp3"></audio>
+
+<div class="heart" id="heart"></div>
+
+<div class="letter-page" id="letterPage">
+  <div class="letter glow">
+    <h1>Happy 18th Birthday 💕</h1>
+    <p>
+      Dear Samantha (Dino),<br><br>
+      Happy 18th Birthday! Wishing you many more birthdays ahead  I hope you enjoy your special day to the fullest.  
+      You look even more beautiful when you smile, so try to be a little less “masungit” and “maldita”, okay? 💖  
+      <br><br>
+      I know this might be a different way to greet you, but I’m not really good at arts, so I made something like this instead.  
+      Honestly, I thought your birthday was on October 29, good thing Pia told me it’s the 19th! I kind of rushed this, and I’m still thinking of what gift to give you, but I’ll make it up to you next time. ✨  
+      <br><br>
+      Please don’t change. Stay kind, strong, and the “Ms. Untouchable” that everyone admires.  
+      That’s all. Happy Birthday again!  
+      <br><br>
+      I Love You joke hihihi, I hope we can go on a coffee date sometime soon. ☕💖  
+      <br><br>
+      With Love,<br>
+      Fredelino
+    </p>
+    <button class="back-btn" id="backBtn">💌 Back</button>
+  </div>
+</div>
+
+<script>
+  const heart = document.getElementById('heart');
+  const letterPage = document.getElementById('letterPage');
+  const backBtn = document.getElementById('backBtn');
+  const bgMusic = document.getElementById('bgMusic');
+
+  heart.addEventListener('click', () => {
+    letterPage.classList.add('show');
+    createDecorations();
+    bgMusic.play();
+    bgMusic.volume = 0.5;
+  });
+
+  backBtn.addEventListener('click', () => {
+    letterPage.classList.remove('show');
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+  });
+
+  function createDecorations() {
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.width = petal.style.height = Math.random() * 15 + 10 + 'px';
+      petal.style.animationDuration = 8 + Math.random() * 5 + 's';
+      letterPage.appendChild(petal);
+      setTimeout(() => petal.remove(), 12000);
+    }
+
+    for (let i = 0; i < 10; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.top = Math.random() * 100 + 'vh';
+      flower.style.animationDuration = 10 + Math.random() * 10 + 's';
+      letterPage.appendChild(flower);
+      setTimeout(() => flower.remove(), 15000);
+    }
+
+    for (let i = 0; i < 25; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.animationDuration = 1 + Math.random() * 2 + 's';
+      letterPage.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 4000);
+    }
+  }
+</script>
+</body>
+</html>
